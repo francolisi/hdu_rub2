@@ -2,7 +2,7 @@
   <a href="https://github.com/Albresky/HDU-Library-Master"><img src="https://s2.loli.net/2023/05/22/3y6dc51NXmabzgj.png" alt="HDU-Library-Master"></a>
 </p>
 <p align="center">
-杭电图书馆每日定时[订座/抢座]start!
+杭电图书馆每日定时[订座/抢座]start!rubrun
 </p>
 
 **中文** | [English](https://github.com/Albresky/HDU-Library-Master/blob/main/readme/README_EN.md)
