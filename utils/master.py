@@ -69,7 +69,7 @@ class Master:
             self.job["maxTrials"] = 1  # default max trials
         else:
             self.job["maxTrials"] = int(env_max_trials)
-        if env_delay is None or env_delay == '' or int(env_delay) < 2:
+        if env_delay is None or env_delay == '' or int(env_delay) > 10 or int(env_delay) < 1:
             self.job["delay"] = 2   # default delay
         else:
             self.job["delay"] = int(env_delay)
@@ -218,8 +218,15 @@ class Master:
             md5=hashlib.md5(_g.encode('utf-8')).hexdigest()
             str_g=base64.b64encode(md5.encode('utf-8')).decode('utf-8')
             self.session.headers["Api-Token"]=str_g
-
-            res = self.session.post(url=url, data=data).json()
+            
+            res = None
+            
+            try:
+                res = self.session.post(url=url, data=data).json()
+            except requests.exceptions.JSONDecodeError as e:
+                print(e)
+                return None
+            
             return res
 
 if __name__ == "__main__":

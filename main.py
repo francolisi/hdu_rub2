@@ -30,9 +30,13 @@ def run():
             delay = master.job["delay"]
 
             nowTime = getNowTime(precision="second")
-            preExeTime_details = getNowTime().strptime(
-                master.job["preExeTime"], "%H:%M:%S"
-            )
+            try:
+                preExeTime_details = getNowTime().strptime(
+                    master.job["preExeTime"], "%H:%M:%S"
+                )
+            except TypeError as e:
+                print(f"[{getNowTime()}]请检查配置文件中的preExeTime是否正确！\n当前preExeTime={master.job['preExeTime']}")
+                return
             preExeTime =getNowTimeWithOffset(days=1).replace(
                 hour=preExeTime_details.hour,
                 minute=preExeTime_details.minute,
@@ -82,8 +86,13 @@ def run():
                 if api.master.job["logDetails"]:
                     getInfo(tryTimes + 1, plan, res)
                 try:
-                    if res["DATA"]["result"] != "fail":
+                    if res is None:
+                        isSuccess = False
+                    elif res["DATA"]["result"] != "fail":
                         isSuccess = True
+                    elif str(res["MESSAGE"]).startswith(MSG_INVALID_REQUEST):
+                        print(f"[{getNowTime()}]plan[{planIndex}]={_planCode}] {res['MESSAGE']}，请更新你的仓库或提交issue！")
+                        break
                     elif str(res["MESSAGE"]).startswith(MSG_TIME_OUT_OF_RANGE):
                         sleep(delay)
                     elif str(res["MESSAGE"]).startswith(MSG_DUPLICATE):
