@@ -26,7 +26,7 @@ def run():
             else:
                 _planCode = planCode
 
-            maxTrials = master.job["maxTrials"]
+            maxTrials = master.job["maxTrials"] + 2
             delay = master.job["delay"]
 
             nowTime = getNowTime(precision="second")
