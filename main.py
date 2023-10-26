@@ -107,7 +107,7 @@ def run():
                         elif str(res["MESSAGE"]).startswith(MSG_SEAT_UNAVAILABLE):
                             isSuccess = False
                             break
-                        else 
+                        else:
                             isSuccess = False
                             print(f"[{getNowTime()}]plan[{planIndex}]={_planCode}] 预约失败，已尝试{tryTimes + 1}次")
                             sleep(delay)
