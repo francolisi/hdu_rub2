@@ -21,7 +21,7 @@ def run():
         allSuccess = False
         outDelay = 30
         while hasTimes < maxAlltries and not allSuccess:
-            print(f"[{getNowTime()}]plan[{planIndex}]={_planCode}] 开始第{hasTimes + 1}次尝试")
+            print(f"[{getNowTime()}] 开始第{hasTimes + 1}次尝试")
             planIndex = 0
             for plan in master.plans:
                 planCode = master.planCode[planIndex]
