@@ -83,6 +83,7 @@ def run():
             outDelay = 30
             outMaxtries = 3
             outTry = 0
+            print(f"[{getNowTime()}]plan[{planIndex}]={_planCode}] 大循环{outTry + 1}开始尝试")
             while tryTimes < maxTrials and outTry < outMaxtries and not isSuccess:
                 res = master.run(plan)
                 if api.master.job["logDetails"]:
@@ -114,6 +115,7 @@ def run():
                     if tryTimes >= maxTrials:
                         outTry += 1
                         tryTimes = 0
+                        print(f"[{getNowTime()}]plan[{planIndex}]={_planCode}] 大循环[{outTry}]尝试失败，等待30s后开始尝试大循环[{outTry + 1}]")
                         sleep(outDelay)
                 
             if isSuccess:
