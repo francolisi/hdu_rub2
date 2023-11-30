@@ -63,6 +63,7 @@ def run():
                     minute=executeTime_details.minute,
                     second=executeTime_details.second,
                 )
+                print(f"{executeTime}")
 
                 if nowTime < executeTime:
                     time_wait = (executeTime - nowTime).seconds
