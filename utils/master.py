@@ -81,7 +81,7 @@ class Master:
         if env_preExeTime is None or env_preExeTime == '':
             self.job["preExeTime"] = "00:00:00"
         if env_executeTime is None or env_executeTime == '':
-            self.job["executeTime"] = "23:35:00"
+            self.job["executeTime"] = "20:00:00"
         else:
             try:
                 exeTime=dt.strptime(env_executeTime,"%H:%M:%S")
